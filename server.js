@@ -6,15 +6,25 @@ const taskRoutes = require("./routes/taskRoutes");
 
 dotenv.config();
 
+// Check if MONGO_URI exists (important for Render)
+if (!process.env.MONGO_URI) {
+console.log("❌ MONGO_URI is NOT defined in environment variables");
+} else {
+console.log("✅ MONGO_URI detected");
+}
+
 const app = express();
 
+// Connect to MongoDB
 connectDB();
 
 app.use(cors());
 app.use(express.json());
 
+// Routes
 app.use("/api", taskRoutes);
 
+// Health route
 app.get("/", (req, res) => {
 res.send("EduPlanner API Running");
 });
