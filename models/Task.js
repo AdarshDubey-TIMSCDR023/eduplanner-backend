@@ -5,12 +5,8 @@ const taskSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  description: {
-    type: String
-  },
-  deadline: {
-    type: Date
-  },
+  description: String,
+  deadline: Date,
   status: {
     type: String,
     enum: ["Pending", "In Progress", "Completed"],
@@ -22,4 +18,4 @@ const taskSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Task", taskSchema, "student_tasks");
+module.exports = mongoose.model("Task", taskSchema);
